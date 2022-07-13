@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!_d3guqc(!e(xqg0#4uapcz+5_7iz5bba%-5kt9k)5ih!27%&!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tweetterapp.herokuapp.com']
 
 
 # Application definition
@@ -124,7 +124,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")  # this is your static folder
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')   #this is you assets folder.
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')  # this is you assets folder.
 
 
 # Default primary key field type
