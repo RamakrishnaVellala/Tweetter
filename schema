@@ -2,23 +2,24 @@ Tables
 1.user-
 CREATE TABLE user (
     PersonID int,
-    LastName varchar(250),
-    FirstName varchar(250),
-    Address varchar(250),
-    Age Int, 
-    Gender varchar(20),
-    City varchar(250),
+    Name varchar(250),
+    Email varchar(250),
     ContactNumber Int,
-    Email varchar(250)
+    DOB  datetime(),
+    Address varchar(250),
+    Gender varchar(20),
+    CreationDate datetime(),
+    Lastlogin datetime(),
 );
 
 2. Tweets-
+
 CREATE TABLE user (
     ID int,
     user_id Int,
     Foriegnkey(user_id) References user(PersonID),
     title varchar(250),
-    details text,
+    content text,
     link varchar(250),
     publish datetime(auto_now=True),
     created datetime(auto_now=True),
@@ -36,6 +37,9 @@ CREATE TABLE comments (
     Foriegnkey(tweet_id) References Tweets(ID),
     comment text,
     link varchar(250),
-);
+); 
+
+3. follwer-
+
   
 

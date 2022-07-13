@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!_d3guqc(!e(xqg0#4uapcz+5_7iz5bba%-5kt9k)5ih!27%&!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tweetterapp.herokuapp.com']
+ALLOWED_HOSTS = ['tweetterapp.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Tweetterapp'
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
