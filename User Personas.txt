@@ -1,0 +1,21 @@
+name-Raj
+Age-35
+Location-Banglore
+Work-Software Engineer
+Married with two kids
+Earns around $65,000 per year
+
+He likes to  get  all Technology related information and He wants to tweet Technology related Tweets.
+He enjoys lots of new inovations in technology and he also likes music.
+His frustration is by getting unncessary feeds shown to him instead of his choice.
+His goal is to utilize the social media with out wasting his time.
+
+name-Ram
+Age-22
+Location-Banglore
+Work-unemployee
+unmarried
+
+He likes to  get  job immediately. He don't want to distract his focus using social media.
+His frustration is as he distracted from social media.
+His goal is not to distrct from social media. 

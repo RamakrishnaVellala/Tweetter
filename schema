@@ -1,0 +1,41 @@
+Tables
+1.user-
+CREATE TABLE user (
+    PersonID int,
+    LastName varchar(250),
+    FirstName varchar(250),
+    Address varchar(250),
+    Age Int, 
+    Gender varchar(20),
+    City varchar(250),
+    ContactNumber Int,
+    Email varchar(250)
+);
+
+2. Tweets-
+CREATE TABLE user (
+    ID int,
+    user_id Int,
+    Foriegnkey(user_id) References user(PersonID),
+    title varchar(250),
+    details text,
+    link varchar(250),
+    publish datetime(auto_now=True),
+    created datetime(auto_now=True),
+    updated datetime(auto_now=True),
+    status varchar(250)
+  
+);
+3. comments-
+
+CREATE TABLE comments (
+    ID int,
+    tweet_id Int,
+    user_id Int,
+    Foriegnkey(user_id) References user(PersonID)
+    Foriegnkey(tweet_id) References Tweets(ID),
+    comment text,
+    link varchar(250),
+);
+  
+

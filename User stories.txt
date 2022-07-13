@@ -1,0 +1,5 @@
+user story1-
+I want to read the tweets of my choice. then I utilise my productive time.
+
+user story2-
+I want to get tweets which are not distract me and which show way to achieve my goal.
