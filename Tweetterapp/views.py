@@ -9,26 +9,28 @@ from .forms import UserRegisterForm
 
 
 def index(request):
-    return render(request, 'Tweetterapp/index.html', {'title':'index'})
-   
+    return render(request, 'Tweetterapp/index.html', {'title': 'index'})
+
 
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Your account has been created ! You are now able to log in')
+            messages.success(
+                request, f'Your account has been created ! You are now able to log in')
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'Tweetterapp/register.html', {'form': form, 'title': 'reqister here'})
-   
+        context = {'form': form}
+        return render(request, 'Tweetterapp/register.html', context)
+
 
 def Login(request):
     if request.method == 'POST':
-   
+
         # AuthenticationForm_can_also_be_used__
-   
+
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
