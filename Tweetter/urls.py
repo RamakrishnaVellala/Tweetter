@@ -1,14 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from Tweetterapp import views as user_view
-from django.contrib.auth import views as auth
-  
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
-  
     path('admin/', admin.site.urls),
-  
-    ##### user related path########################## 
     path('', include('Tweetterapp.urls')),
- 
-  
 ]

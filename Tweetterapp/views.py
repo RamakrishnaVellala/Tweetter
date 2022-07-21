@@ -5,11 +5,19 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from django.urls import reverse
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileUpdateForm
+from .models import Tweet, Follower, Profile
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+@login_required
 def index(request):
-    return render(request, 'Tweetterapp/index.html', {'title': 'index'})
+    context = {'tweets': Tweet.objects.all}
+    return render(request, 'Tweetterapp/index.html', context)
 
 
 def register(request):
@@ -29,8 +37,6 @@ def register(request):
 def Login(request):
     if request.method == 'POST':
 
-        # AuthenticationForm_can_also_be_used__
-
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -47,3 +53,31 @@ def Login(request):
 def Logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
+
+@login_required
+def profile(request):
+    return render(request, 'Tweetterapp/profile.html')
+
+
+def profileupdate(request):
+    if request.method == 'POST':
+        pform = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if pform.is_valid():
+            pform.save()
+            return redirect('profile')
+    else:
+        pform = ProfileUpdateForm(instance=request.user.profile)
+    return render(request, 'Tweetterapp/profileupdate.html', {'pform': pform})
+
+
+class TweetCreateView(LoginRequiredMixin, CreateView):
+    model = Tweet
+    template_name = 'Tweetterapp/create.html'
+    fields = ['content', 'content_image']
+    success_url = '/index'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

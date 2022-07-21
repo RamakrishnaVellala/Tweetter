@@ -1,13 +1,13 @@
-{% extends "Tweetterapp/index.html" %}
+{% extends "Tweetterapp/base.html" %}
 {% load crispy_forms_tags %}
-{% block start %}
-
+{% block content %}
+<center>
  <div class="content-section col-md-8 col-md-offset-2">
-  <center>
   
-  <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+    <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
     {% csrf_token %}
     <img src="https://img.icons8.com/color/50/000000/twitter--v1.png"/>
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
     <fieldset class="form-group">
       {{ form|crispy}}
     </fieldset>
@@ -19,4 +19,4 @@
   </form>
 </center>
  </div>
-{% endblock start %}
+{% endblock content %}

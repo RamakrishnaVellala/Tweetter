@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Tweetterapp',
     'crispy_forms',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -80,17 +84,21 @@ WSGI_APPLICATION = 'Tweetter.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER':  config('DB_USER'),
-        'PASSWORD' : config('DB_PASSWORD'),
-        'HOST' : config('DB_HOST'),
-        'PORT' : 5432
-
+        'NAME': 'twitter',
+        'USER': 'postgres',
+        'PASSWORD': 'test123',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
 
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Password validation
@@ -111,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = "index"
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -141,4 +150,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')  # this is you assets folder.
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'Tweeterapp/media/'
